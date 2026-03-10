@@ -6,7 +6,7 @@ async function loadUserDashboard() {
     window.location.href = "../pages/login.html";
   }
 
-  const res = await fetch(`http://127.0.0.1:8000/api/orders/user/${user_id}`, {
+  const res = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/orders/user/${user_id}`, {
     headers: token ? {"Authorization": `Bearer ${token}`} : {}
   });
   const orders = await res.json();

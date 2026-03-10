@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "https://waterplus-backend-d1nx.vercel.app/api";
 
 // Login Form Handler
 document.querySelector("form")?.addEventListener("submit", async (e) => {

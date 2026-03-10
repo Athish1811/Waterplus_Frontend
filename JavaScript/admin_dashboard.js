@@ -4,7 +4,7 @@ async function loadAdminData() {
 
   try {
     // Use the admin stats endpoint which gives all stats in one call
-    const statsRes = await fetch(`http://127.0.0.1:8000/api/dashboard/admin-stats`, { headers });
+    const statsRes = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/dashboard/admin-stats`, { headers });
     const stats = await statsRes.json();
 
     if (document.getElementById("totalProducts")) {

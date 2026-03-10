@@ -1,6 +1,6 @@
 // API Configuration and Helper Functions for Frontend
 
-const API_BASE_URL = "http://127.0.0.1:8001/api";
+const API_BASE_URL = "https://waterplus-backend-d1nx.vercel.app/api";
 
 
 // Helper function for API requests

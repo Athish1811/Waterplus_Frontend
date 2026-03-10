@@ -13,7 +13,7 @@ document.querySelector("#productForm").addEventListener("submit", async (e) => {
   const price = parseFloat(document.getElementById("price").value);
   const stock_quantity = parseInt(document.getElementById("stock_quantity").value) || 0;
 
-  const res = await fetch(`http://127.0.0.1:8000/api/products/`, {
+  const res = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/products/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

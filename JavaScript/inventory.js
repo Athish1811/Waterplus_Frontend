@@ -14,7 +14,7 @@ document.getElementById("inventoryBtn")
       return;
     }
 
-    const res = await fetch(`http://127.0.0.1:8000/api/inventory/${product_id}/add-stock`, {
+    const res = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/inventory/${product_id}/add-stock`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
