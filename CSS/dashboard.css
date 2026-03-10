@@ -1,0 +1,201 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f9ff;
+}
+
+.header {
+  background: linear-gradient(to right, #0077b6, #00b4d8);
+  color: white;
+  padding: 15px 30px;
+}
+
+.content {
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card, .profile-card, .status-box {
+  background: white;
+  padding: 20px;
+  width: 280px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.delivered {
+  background: green;
+}
+
+.pending {
+  background: orange;
+}
+
+.active {
+  color: #0077b6;
+  font-weight: bold;
+}
+
+
+.btn {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.home-btn {
+  display: block;         
+  width: 160px;
+  margin: 30px auto;       
+  text-align: center;
+
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #fff;
+  border: 2px solid #0072ff;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f9ff;
+}
+
+
+.header {
+  background: linear-gradient(to right, #0077b6, #00b4d8);
+  color: #fff;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+
+.dashboard {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.profile-card {
+  background: #fff;
+  width: 380px;
+  padding: 30px 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 15px;
+}
+
+
+.profile-card p {
+  margin: 10px 0;
+}
+
+
+.card-btn {
+  display: inline-block;
+  text-align: center;
+  background: linear-gradient(to right, #0077b6, #00b4d8);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 0;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.card-btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+
+.back-btn {
+  background: #ccc;
+  color: #333;
+}
+
+.back-btn:hover {
+  background: #b3b3b3;
+}
+
+.home-btn {
+  margin-top: 28px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #0072ff;
+  background: #fff;
+  border: 2px solid #0072ff;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,114,255,0.35);
+}
+
+.orders-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.order-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.order-card:hover{
+transform:translateY(-5px);
+}
+
+.status{
+margin-top:10px;
+font-weight:bold;
+color:green;
+}

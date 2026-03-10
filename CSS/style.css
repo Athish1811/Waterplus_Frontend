@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f3fbff;
+  color: #333;
+}
+
+
+header {
+  background: linear-gradient(to right, #0077b6, #00b4d8);
+  color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.menu,
+.login {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.login {
+  margin-left: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+.btn-link {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: white;
+  color: #009fe3;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-link.signup {
+  background-color: #0077b6;
+  color: #fff;
+}
+
+.btn-link:hover {
+  background-color: #005f99;
+  color: #fff;
+}
+
+
+section {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  color: #0077b6;
+  margin-bottom: 20px;
+}
+
+.about p {
+  text-align: center;
+  font-size: 1.1rem;
+  background-color: #e6f7ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+.products .product-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.product {
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px;
+  width: 220px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product img {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+}
+
+.product p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #005f99;
+}
+
+
+.feedback {
+  background-color: #dff6ff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 15px auto;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #222;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 20px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu,
+  .login {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product {
+    width: 80%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,247 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(to right, #0077b6, #00b4d8);
+  color: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #caf0f8;
+  transform: scale(1.05);
+}
+
+.poster {
+  position: relative;
+  width: 90%;
+  max-width: 1300px;
+  margin: 40px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  aspect-ratio: 16 / 9;
+}
+
+.poster-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+
+.poster-text {
+  position: absolute;
+  top: 290px;
+  left: 200px;
+  text-align: center;
+  color: white;
+}
+
+.poster-text h2 {
+  font-size: 35px;
+}
+
+.poster-text p {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.poster-text span {
+  color: #2cd20b;
+}
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  padding: 20px;
+}
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.card-header h3 {
+  color: #0077b6;
+}
+.quality-assurance {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.products {
+  margin-top: 40px;
+}
+
+.section-title {
+  text-align: center;
+  color: #0077b6;
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.product {
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 15px;
+  width: 160px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.product p {
+  margin-top: 8px;
+  color: #0077b6;
+  font-weight: bold;
+}
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 25px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .poster {
+    width: 95%;
+    margin: 20px auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .poster-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .poster-text p {
+    font-size: 1rem;
+  }
+
+  .info-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    padding: 20px;
+  }
+
+  .card-header img {
+    width: 40px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .quality-assurance {
+    padding: 20px;
+  }
+
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  footer {
+    font-size: 0.85rem;
+    padding: 15px;
+  }
+}
