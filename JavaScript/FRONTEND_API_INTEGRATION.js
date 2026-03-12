@@ -119,29 +119,28 @@ async function deleteProduct(productId) {
 // ORDER ENDPOINTS
 // ============================================
 
-async function getUserOrders(userId) {
-  return apiRequest(`/orders/user/${userId}`);
+async function createOrder(orderData) {
+  return apiRequest(`/orders/`, 'POST', orderData);
 }
 
-async function getOrderById(orderId) {
-  return apiRequest(`/orders/${orderId}`);
+// USER → get my orders
+async function getUserOrders() {
+  return apiRequest(`/orders/my-orders`);
 }
 
-async function createOrder(userId, orderData) {
-  return apiRequest(`/orders/`, 'POST', {
-    ...orderData,
-    user_id: userId,
-  });
+// ADMIN → get all orders
+async function getAllOrdersAdmin() {
+  return apiRequest(`/orders/admin/orders`);
 }
-
+// ADMIN → update order status
 async function updateOrderStatus(orderId, status) {
-  return apiRequest(`/orders/${orderId}`, 'PUT', { status });
+  return apiRequest(`/orders/admin/${orderId}/status`, 'PUT', { status });
 }
 
+// USER → cancel order
 async function cancelOrder(orderId) {
   return apiRequest(`/orders/${orderId}`, 'DELETE');
 }
-
 // ============================================
 // SUPPLIER ENDPOINTS
 // ============================================

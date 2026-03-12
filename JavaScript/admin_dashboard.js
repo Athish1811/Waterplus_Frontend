@@ -1,6 +1,12 @@
 async function loadAdminData() {
   const token = localStorage.getItem("access_token");
-  const headers = token ? { "Authorization": `Bearer ${token}` } : {};
+  const role = localStorage.getItem("user_role");
+  if (!token || role !== "admin") {
+    alert("Admin access only");
+    window.location.href = "../pages/login.html";
+    return;
+  }
+  const headers = { "Authorization": `Bearer ${token}` };
 
   try {
     // Use the admin stats endpoint which gives all stats in one call

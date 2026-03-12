@@ -48,6 +48,13 @@
 </section>
 
 <script src="../JavaScript/admin_dashboard.js"></script>
+<script>
+  document.querySelector('.logout')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = '../pages/login.html';
+  });
+</script>
 
 </body>
 </html>

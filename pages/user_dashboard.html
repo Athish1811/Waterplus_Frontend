@@ -34,5 +34,12 @@
       </div>
     </section>
   </body>
-  <script src="../JavaScript/user_dashoard.js"></script>
+  <script src="../JavaScript/user_dashboard.js"></script>
+  <script>
+    document.querySelector('.logout')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.clear();
+      window.location.href = '../pages/login.html';
+    });
+  </script>
 </html>

@@ -1,32 +1,39 @@
 const API_BASE = "https://waterplus-backend-d1nx.vercel.app/api";
-const token = localStorage.getItem("access_token");
 
-// Redirect if not logged in
-if (!token) {
-    alert("Admin login required");
-    window.location.href = "../pages/login.html";
-}
+document.addEventListener("DOMContentLoaded", () => {
+
+    const token = localStorage.getItem("access_token");
+    const role = localStorage.getItem("user_role");
+
+    if (!token || role !== "admin") {
+        alert("Admin access only");
+        window.location.href = "../pages/login.html";
+        return;
+    }
+
+    loadOrders(token);
+
+});
 
 // =======================
-// LOAD ALL ORDERS
+// LOAD ORDERS
 // =======================
 
-async function loadOrders() {
+async function loadOrders(token) {
 
     try {
 
         const res = await fetch(`${API_BASE}/orders/admin`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             }
         });
 
-        if (res.status === 401) {
-            alert("Session expired. Please login again.");
-            localStorage.clear();
-            window.location.href = "../pages/login.html";
+        if (!res.ok) {
+            const errorText = await res.text();
+            console.error("API Error:", res.status, errorText);
+            alert("Failed to load orders: " + errorText);
             return;
         }
 
@@ -44,9 +51,9 @@ async function loadOrders() {
 
             let statusColor = "gray";
 
-            if(order.status === "pending") statusColor = "orange";
-            if(order.status === "confirmed") statusColor = "blue";
-            if(order.status === "delivered") statusColor = "green";
+            if (order.status === "pending") statusColor = "orange";
+            if (order.status === "confirmed") statusColor = "blue";
+            if (order.status === "delivered") statusColor = "green";
 
             const row = document.createElement("tr");
 
@@ -59,7 +66,6 @@ async function loadOrders() {
                 <td>
                     <button onclick="updateStatus(${order.id}, 'confirmed')">Confirm</button>
                     <button onclick="updateStatus(${order.id}, 'delivered')">Deliver</button>
-                    <button onclick="deleteOrder(${order.id})">Delete</button>
                 </td>
             `;
 
@@ -82,36 +88,30 @@ async function loadOrders() {
 
 async function updateStatus(orderId, status) {
 
-    await fetch(`${API_BASE}/orders/${orderId}/status?status=${status}`, {
-        method: "PUT",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
+    const token = localStorage.getItem("access_token");
 
-    loadOrders();
+    try {
+
+        const res = await fetch(`${API_BASE}/orders/admin/${orderId}/status`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ status })
+        });
+
+        if (!res.ok) {
+            alert("Failed to update order");
+            return;
+        }
+
+        loadOrders(token);
+
+    } catch (error) {
+
+        console.error("Status Update Error:", error);
+
+    }
 
 }
-
-// =======================
-// DELETE ORDER
-// =======================
-
-async function deleteOrder(orderId) {
-
-    const confirmDelete = confirm("Delete this order?");
-
-    if(!confirmDelete) return;
-
-    await fetch(`${API_BASE}/orders/${orderId}`, {
-        method: "DELETE",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
-
-    loadOrders();
-
-}
-
-loadOrders();
