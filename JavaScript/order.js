@@ -1,8 +1,3 @@
-// API_BASE_URL is loaded from config.js
-
-// ========================================
-// Dynamic Price Calculation
-// ========================================
 let productList = [];
 
 let isProductsLoaded = false;
@@ -66,9 +61,6 @@ function calculateTotal() {
     }
 }
 
-// ========================================
-// Place Order Handler
-// ========================================
 document.getElementById('orderBtn')?.addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -83,7 +75,6 @@ document.getElementById('orderBtn')?.addEventListener('click', async (e) => {
     const quantity = parseInt(document.getElementById('quantityInput')?.value);
     const deliveryAddress = document.getElementById('addressInput')?.value.trim();
 
-    // Validation
     if (!productId) {
         alert('Please select a product');
         return;
@@ -148,11 +139,11 @@ document.getElementById('orderBtn')?.addEventListener('click', async (e) => {
     }
 });
 
-// Initialize listeners
+
 document.addEventListener('DOMContentLoaded', () => {
     const select = document.getElementById('productSelect');
     if (select) {
-        // Fetch products only when user clicks/focuses the dropdown
+        
         select.addEventListener('focus', loadProductOptions);
         select.addEventListener('change', calculateTotal);
     }

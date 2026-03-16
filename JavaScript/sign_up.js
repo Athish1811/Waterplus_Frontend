@@ -8,7 +8,6 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
-  const role = document.getElementById('role').value;
 
   if (!name || !email || !password || !confirmPassword) {
     alert('Please fill all fields');

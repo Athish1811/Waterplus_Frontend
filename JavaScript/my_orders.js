@@ -1,5 +1,3 @@
-// API_BASE is loaded from config.js
-
 async function loadOrders() {
 
   const token = localStorage.getItem("access_token");
@@ -35,7 +33,7 @@ async function loadOrders() {
     }
 
     orders.forEach(order => {
-      const orderDate = new Date(order.created_at).toLocaleString();
+      const orderDate = new Date(order.created_at + 'Z').toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
       container.innerHTML += `
       <div class="order-card">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">

@@ -56,7 +56,7 @@ async function loadOrders(token) {
             if (order.status === "delivered") statusColor = "#00b894";
             if (order.status === "cancelled") statusColor = "#d63031";
 
-            const orderDate = new Date(order.created_at).toLocaleString();
+            const orderDate = new Date(order.created_at + 'Z').toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
             const row = document.createElement("tr");
 
             row.innerHTML = `
