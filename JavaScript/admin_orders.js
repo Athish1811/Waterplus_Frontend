@@ -1,4 +1,6 @@
-const API_BASE = "https://waterplus-backend-d1nx.vercel.app/api";
+// API_BASE is loaded from config.js via admin_orders.html (if included)
+// Actually, let's ensure API_BASE_URL is used consistently.
+const API_BASE = typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : "http://127.0.0.1:8000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -48,24 +50,29 @@ async function loadOrders(token) {
         }
 
         data.forEach(order => {
+            let statusColor = "#636e72"; 
+            if (order.status === "pending") statusColor = "#fdcb6e";
+            if (order.status === "confirmed") statusColor = "#0984e3";
+            if (order.status === "delivered") statusColor = "#00b894";
+            if (order.status === "cancelled") statusColor = "#d63031";
 
-            let statusColor = "gray";
-
-            if (order.status === "pending") statusColor = "orange";
-            if (order.status === "confirmed") statusColor = "blue";
-            if (order.status === "delivered") statusColor = "green";
-
+            const orderDate = new Date(order.created_at).toLocaleString();
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                <td>${order.id}</td>
-                <td>${order.user_id}</td>
-                <td>${order.product_id}</td>
+                <td>#${order.id}</td>
+                <td>${order.customer_name || "N/A"}</td>
+                <td>${order.product_name || "ID: " + order.product_id}</td>
                 <td>${order.quantity}</td>
-                <td style="color:${statusColor};font-weight:bold">${order.status}</td>
+                <td>₹${(order.total_price || 0).toFixed(2)}</td>
+                <td style="color:${statusColor}; font-weight:bold; text-transform: capitalize;">${order.status}</td>
+                <td><small>${orderDate}</small></td>
                 <td>
-                    <button onclick="updateStatus(${order.id}, 'confirmed')">Confirm</button>
-                    <button onclick="updateStatus(${order.id}, 'delivered')">Deliver</button>
+                    <div class="action-btns" style="display: flex; gap: 5px; justify-content: center;">
+                      ${order.status === 'pending' ? `<button onclick="updateStatus(${order.id}, 'confirmed')" style="background:#3498db; color:white;">Confirm</button>` : ''}
+                      ${(order.status === 'pending' || order.status === 'confirmed') ? `<button onclick="updateStatus(${order.id}, 'delivered')" style="background:#2ecc71; color:white;">Deliver</button>` : ''}
+                      ${order.status !== 'delivered' && order.status !== 'cancelled' ? `<button onclick="updateStatus(${order.id}, 'cancelled')" style="background:#e74c3c; color:white;">Cancel</button>` : ''}
+                    </div>
                 </td>
             `;
 

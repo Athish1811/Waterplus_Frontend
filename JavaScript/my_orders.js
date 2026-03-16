@@ -1,46 +1,61 @@
-const API_BASE = "https://waterplus-backend-d1nx.vercel.app/api";
+// API_BASE is loaded from config.js
 
 async function loadOrders() {
 
-  const user_id = localStorage.getItem("user_id");
   const token = localStorage.getItem("access_token");
 
-  const res = await fetch(`${API_BASE}/orders/user/${user_id}`, {
-    headers: {
-      "Authorization": `Bearer ${token}`
-    }
-  });
-
-  const orders = await res.json();
-
-  const container = document.getElementById("ordersContainer");
-  container.innerHTML = "";
-
-  if (!orders || orders.length === 0) {
-    container.innerHTML = "<h3>No Orders Found</h3>";
+  if (!token) {
+    window.location.href = "../pages/login.html";
     return;
   }
 
-  orders.forEach(order => {
+  const container = document.getElementById("ordersContainer");
+  container.innerHTML = "<p>Loading...</p>";
 
-    container.innerHTML += `
-    
-    <div class="order-card">
+  try {
+    const res = await fetch(`${API_BASE_URL}/orders/my-orders`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
 
-      <h3>Order #${order.id}</h3>
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      container.innerHTML = `<h3>Error: ${err.detail || "Failed to load orders"}</h3>`;
+      return;
+    }
 
-      <p><b>Product ID:</b> ${order.product_id}</p>
+    const orders = await res.json();
 
-      <p><b>Quantity:</b> ${order.quantity}</p>
+    container.innerHTML = "";
 
-      <p><b>Total:</b> ₹${order.total_price}</p>
+    if (!orders || orders.length === 0) {
+      container.innerHTML = "<h3>No Orders Found</h3>";
+      return;
+    }
 
-      <p class="status">${order.status}</p>
+    orders.forEach(order => {
+      const orderDate = new Date(order.created_at).toLocaleString();
+      container.innerHTML += `
+      <div class="order-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <h3>Order #${order.id}</h3>
+          <span class="status ${order.status}">${order.status}</span>
+        </div>
+        <p><b>Product:</b> ${order.product_name || "ID: " + order.product_id}</p>
+        <p><b>Quantity:</b> ${order.quantity}</p>
+        <p><b>Total Amount:</b> ₹${(order.total_price || 0).toFixed(2)}</p>
+        <p style="font-size: 0.8rem; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+          <b>Placed on:</b> ${orderDate}
+        </p>
+      </div>
+      `;
+    });
 
-    </div>
-
-    `;
-  });
+  } catch (error) {
+    console.error("Orders load error:", error);
+    container.innerHTML = "<h3>Could not connect to server</h3>";
+  }
 
 }
 

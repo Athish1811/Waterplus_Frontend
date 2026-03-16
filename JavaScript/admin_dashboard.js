@@ -10,7 +10,7 @@ async function loadAdminData() {
 
   try {
     // Use the admin stats endpoint which gives all stats in one call
-    const statsRes = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/dashboard/admin-stats`, { headers });
+    const statsRes = await fetch(`${API_BASE_URL}/dashboard/admin-stats`, { headers });
     const stats = await statsRes.json();
 
     if (document.getElementById("totalProducts")) {
@@ -27,6 +27,9 @@ async function loadAdminData() {
     }
     if (document.getElementById("pendingOrders")) {
       document.getElementById("pendingOrders").innerText = stats.pending_orders ?? 0;
+    }
+    if (document.getElementById("confirmedOrders")) {
+      document.getElementById("confirmedOrders").innerText = stats.confirmed_orders ?? 0;
     }
     if (document.getElementById("availableStock")) {
       document.getElementById("availableStock").innerText = stats.available_stock ?? 0;

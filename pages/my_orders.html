@@ -3,24 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>My Orders</title>
-<link rel="stylesheet" href="../CSS/dashboard.css">
+<link rel="stylesheet" href="../CSS/my_orders.css">
 </head>
 
 <body>
 
-<header class="header">
-<h2>My Orders</h2>
-</header>
+  <header class="header">
+    <h2>My Order History</h2>
+    <div class="user-info" id="userEmail"></div>
+  </header>
 
-<section class="content">
+  <div class="container">
+    <section class="content">
+      <!-- ORDERS WILL LOAD HERE -->
+      <div id="ordersContainer" class="orders-grid"></div>
+    </section>
 
-<!-- ORDERS WILL LOAD HERE -->
-<div id="ordersContainer" class="orders-grid"></div>
+    <div class="actions">
+      <a href="../pages/user_dashboard.html" class="home-btn">← Back to Dashboard</a>
+    </div>
+  </div>
 
-</section>
-
-<a href="../pages/user_dashboard.html" class="home-btn">Go Back</a>
-
-<script src="../JavaScript/my_orders.js"></script>
+  <script src="../JavaScript/config.js"></script>
+  <script src="../JavaScript/my_orders.js"></script>
 </body>
 </html>

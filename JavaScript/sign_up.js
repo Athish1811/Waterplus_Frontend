@@ -1,5 +1,4 @@
-// API Configuration
-const API_BASE_URL = `https://waterplus-backend-d1nx.vercel.app/api`;
+// API_BASE_URL is loaded from config.js
 
 // Signup Form Handler
 document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
@@ -35,7 +34,7 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
         email,
         password,
         confirm_password: confirmPassword,
-        role,
+        // role is NOT sent — backend always defaults new accounts to 'user'
       }),
     });
 

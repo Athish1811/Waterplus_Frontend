@@ -1,70 +1,161 @@
-// API Configuration
-const API_BASE_URL = `https://waterplus-backend-d1nx.vercel.app/api`;
+// API_BASE_URL is loaded from config.js
 
+// ========================================
+// Dynamic Price Calculation
+// ========================================
+let productList = [];
+
+let isProductsLoaded = false;
+
+async function loadProductOptions() {
+    if (isProductsLoaded) return;
+
+    const select = document.getElementById('productSelect');
+    if (!select) return;
+
+    try {
+        select.innerHTML = '<option value="">Loading products...</option>';
+
+        const res = await fetch(`${API_BASE_URL}/products/`);
+        if (!res.ok) {
+            select.innerHTML = '<option value="">❌ Error loading products</option>';
+            return;
+        }
+
+        const products = await res.json();
+        productList = products;
+
+        if (products.length === 0) {
+            select.innerHTML = '<option value="">No Products Found</option>';
+            return;
+        }
+
+        select.innerHTML = '<option value="">Select water type</option>';
+        products.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.id;
+            const stockInfo = p.stock_quantity > 0 ? `(Stock: ${p.stock_quantity})` : "(Out of Stock)";
+            opt.textContent = `${p.name} - ₹${p.price.toFixed(2)} ${stockInfo}`;
+
+            if (p.stock_quantity <= 0) opt.disabled = true;
+            select.appendChild(opt);
+        });
+
+        isProductsLoaded = true;
+
+    } catch (err) {
+        console.error("Failed to load products:", err);
+        select.innerHTML = '<option value="">❌ Connection failed</option>';
+    }
+}
+
+function calculateTotal() {
+    const productId = parseInt(document.getElementById('productSelect')?.value);
+    const quantity = parseInt(document.getElementById('quantityInput')?.value) || 0;
+    const display = document.getElementById('totalPriceDisplay');
+
+    if (!productId || quantity <= 0) {
+        if (display) display.innerText = "₹0.00";
+        return;
+    }
+
+    const product = productList.find(p => p.id === productId);
+    if (product && display) {
+        const total = product.price * quantity;
+        display.innerText = "₹" + total.toFixed(2);
+    }
+}
+
+// ========================================
 // Place Order Handler
+// ========================================
 document.getElementById('orderBtn')?.addEventListener('click', async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const userId = localStorage.getItem('user_id');
-  if (!userId) {
-    alert('Please login first');
-    window.location.href = '../pages/login.html';
-    return;
-  }
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        alert('Please login first');
+        window.location.href = '../pages/login.html';
+        return;
+    }
 
-  const customerName = document.querySelector('input[placeholder="Enter your name"]').value.trim();
-  const mobileNumber = document.querySelector('input[placeholder="Enter mobile number"]').value.trim();
-  const waterType = document.querySelector('select').value;
-  const quantity = parseInt(document.querySelector('input[placeholder="Enter quantity"]').value);
-  const deliveryAddress = document.querySelector('textarea').value.trim();
+    const productId = parseInt(document.getElementById('productSelect')?.value);
+    const quantity = parseInt(document.getElementById('quantityInput')?.value);
+    const deliveryAddress = document.getElementById('addressInput')?.value.trim();
 
-  // Validation
-  if (!customerName || !mobileNumber || !waterType || !quantity || !deliveryAddress) {
-    alert('Please fill all fields');
-    return;
-  }
+    // Validation
+    if (!productId) {
+        alert('Please select a product');
+        return;
+    }
 
-  if (quantity <= 0) {
-    alert('Quantity must be greater than 0');
-    return;
-  }
+    if (!quantity || quantity <= 0) {
+        alert('Quantity must be greater than 0');
+        return;
+    }
 
-  // Map water type to product ID
-  const productMap = {
-    '20L Can': 1,
-    '10L Bottle': 2,
-    '5L Bottle': 3,
-    '2L Bottle': 4,
-    '1L Bottle': 5,
-  };
+    if (!deliveryAddress) {
+        alert('Please enter a delivery address');
+        return;
+    }
 
-  const productId = productMap[waterType] || 1;
-
-  try {
-    const response = await fetch(`${API_BASE_URL}/orders/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-      },
-      body: JSON.stringify({
+    const orderData = {
         product_id: productId,
         quantity,
         delivery_address: deliveryAddress,
-      }),
+    };
+
+    console.log("🚀 Placing order with:", {
+        url: `${API_BASE_URL}/orders/`,
+        data: orderData,
+        token_present: !!token
     });
 
-    const data = await response.json();
+    try {
+        const response = await fetch(`${API_BASE_URL}/orders/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(orderData),
+        });
 
-    if (!response.ok) {
-      alert('❌ ' + (data.detail || 'Order failed'));
-      return;
+        const text = await response.text();
+        let data;
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (e) {
+            console.error("Failed to parse response JSON. Raw text:", text);
+            data = { detail: "Invalid server response" };
+        }
+
+        if (!response.ok) {
+            console.error("Order failed with status:", response.status, data);
+            if (response.status === 401) {
+                alert('❌ Session Expired. Please log out and back in again.');
+                return;
+            }
+            alert('❌ ' + (data.detail || 'Order failed (Status: ' + response.status + ')'));
+            return;
+        }
+
+        alert('✅ Order Placed Successfully!');
+        window.location.href = '../pages/order_success.html?order_id=' + (data.id || '');
+    } catch (error) {
+        console.error('Fetch error:', error);
+        alert(`❌ Connection Error. \nIs the backend running at ${API_BASE_URL}?\nError: ${error.message}`);
+    }
+});
+
+// Initialize listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const select = document.getElementById('productSelect');
+    if (select) {
+        // Fetch products only when user clicks/focuses the dropdown
+        select.addEventListener('focus', loadProductOptions);
+        select.addEventListener('change', calculateTotal);
     }
 
-    alert('✅ Order Placed Successfully!\nOrder ID: ' + data.id);
-    window.location.href = '../pages/order_success.html?order_id=' + data.id;
-  } catch (error) {
-    console.error('Error:', error);
-    alert('❌ Failed to place order');
-  }
+    document.getElementById('quantityInput')?.addEventListener('input', calculateTotal);
 });

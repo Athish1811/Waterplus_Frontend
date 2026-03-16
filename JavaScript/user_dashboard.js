@@ -1,18 +1,49 @@
+// API_BASE_URL is loaded from config.js
+
 async function loadUserDashboard() {
-  const user_id = localStorage.getItem("user_id");
- const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token");
 
   if (!token) {
     window.location.href = "../pages/login.html";
+    return;
   }
 
-  const res = await fetch(`https://waterplus-backend-d1nx.vercel.app/api/orders/user/${user_id}`, {
-    headers: token ? {"Authorization": `Bearer ${token}`} : {}
-  });
-  const orders = await res.json();
+  try {
+    const userId = localStorage.getItem("user_id");
+    const res = await fetch(`${API_BASE_URL}/dashboard/user-stats/${userId}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
 
-  document.getElementById("orderCount").innerText =
-    Array.isArray(orders) ? orders.length : 0;
+    if (!res.ok) {
+      console.error("Failed to load dashboard statistics:", res.status);
+      return;
+    }
+
+    const stats = await res.json();
+
+    const orderCountEl = document.getElementById("orderCount");
+    if (orderCountEl) {
+      orderCountEl.innerText = stats.total_orders ?? 0;
+    }
+
+    const pendingCountEl = document.getElementById("pendingCount");
+    if (pendingCountEl) {
+      pendingCountEl.innerText = stats.pending_orders ?? 0;
+    }
+
+    const deliveredCountEl = document.getElementById("deliveredCount");
+    if (deliveredCountEl) {
+      deliveredCountEl.innerText = stats.delivered_orders ?? 0;
+    }
+
+    const totalSpentEl = document.getElementById("totalSpent");
+    if (totalSpentEl) {
+      totalSpentEl.innerText = "₹" + (stats.total_spent ?? 0).toFixed(2);
+    }
+
+  } catch (error) {
+    console.error("Dashboard error:", error);
+  }
 }
 
 loadUserDashboard();
