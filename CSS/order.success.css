@@ -108,3 +108,50 @@ body {
   color: #b2bec3;
   font-weight: 500;
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+    align-items: flex-start; /* top la start */
+  }
+
+  .success-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .checkmark {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  .success-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .success-card p {
+    font-size: 0.9rem;
+  }
+
+  .order-info {
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  .order-info p {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .footer-text {
+    font-size: 0.75rem;
+  }
+
+}

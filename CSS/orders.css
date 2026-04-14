@@ -124,3 +124,51 @@ textarea {
   background: rgba(9, 132, 227, 0.05);
   transform: translateY(-2px);
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+    align-items: flex-start; /* top align */
+  }
+
+  .order-card {
+    padding: 25px 20px;
+    border-radius: 18px;
+  }
+
+  .order-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  .order-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .home-btn {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .footer-text {
+    font-size: 0.7rem;
+  }
+
+}

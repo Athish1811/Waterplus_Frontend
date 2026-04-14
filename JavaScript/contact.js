@@ -1,19 +1,19 @@
 // API Configuration
 const API_BASE_URL = "https://waterplus-backend-d1nx.vercel.app/api";
 
-const form = document.querySelector("form");
+const form = document.querySelector(".contact-form");
 
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Contact form values
-  const name = document.querySelector('input[placeholder*="name"]')?.value.trim() || "Guest";
-  const email = document.querySelector('input[placeholder*="email"]')?.value.trim();
-  const phone = document.querySelector('input[placeholder*="phone"]')?.value.trim();
-  const subject = document.querySelector('input[placeholder*="subject"]')?.value.trim() || "Contact Form";
-  const message = document.querySelector("textarea")?.value.trim();
+  const name = document.querySelector('input[name="name"]')?.value.trim();
+  const email = document.querySelector('input[name="email"]')?.value.trim();
+  const phone = document.querySelector('input[name="phone"]')?.value.trim();
+  const subject = document.querySelector('input[name="subject"]')?.value.trim();
+  const message = document.querySelector('textarea[name="message"]')?.value.trim();
 
-  if (!email || !message) {
+  // validation
+  if (!name || !email || !phone || !message) {
     alert("Please fill all required fields ❌");
     return;
   }
@@ -28,12 +28,14 @@ form?.addEventListener("submit", async (e) => {
         name,
         email,
         phone,
-        subject,
+        subject: subject || "Contact Form",
         message
       })
     });
 
-    if (!res.ok) throw new Error("Message send failed");
+    if (!res.ok) {
+      throw new Error("Message send failed");
+    }
 
     alert("✅ Message sent successfully!");
     form.reset();
@@ -43,3 +45,7 @@ form?.addEventListener("submit", async (e) => {
     alert("❌ Failed to send message");
   }
 });
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}

@@ -117,3 +117,45 @@ a {
 .cancel-btn:hover {
   background: #b3b3b3;
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 20px;
+    align-items: flex-start; /* top la start aagum */
+  }
+
+  .profile-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 20px;
+    border-radius: 12px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .input-group input,
+  .input-group textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn-group {
+    flex-direction: column; /* 🔥 buttons stack */
+    gap: 10px;
+  }
+
+  .btn-group button,
+  .cancel-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

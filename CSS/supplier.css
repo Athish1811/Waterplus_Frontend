@@ -49,3 +49,40 @@ button {
 button:hover {
   opacity: 0.9;
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    padding: 15px;
+  }
+
+  .header h2 {
+    font-size: 1.3rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .container h3 {
+    font-size: 1.2rem;
+  }
+
+  input, textarea, button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  textarea {
+    min-height: 80px;
+  }
+
+}

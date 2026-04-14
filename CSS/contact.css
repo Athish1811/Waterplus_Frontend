@@ -9,6 +9,8 @@ body {
   background: #f7fbfd;
   color: #222;
 }
+
+/* ===== HEADER ===== */
 .header-container {
   background: linear-gradient(to right, #0077b6, #00b4d8);
   color: white;
@@ -17,12 +19,16 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 .header-container h1 {
   font-size: 1.8rem;
-  font-weight: bold;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  align-items: center;
 }
 
 .menu a {
@@ -30,35 +36,21 @@ body {
   text-decoration: none;
   font-weight: bold;
   margin-left: 20px;
-  transition: 0.3s;
 }
 
 .menu a:hover,
 .menu .active {
   color: #caf0f8;
 }
-.poster-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
 }
 
-.poster-text h2 {
-  font-size: 2rem;
-}
-
-.poster-text span {
-  color: #2cd20b;
-}
-
-.poster-text p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
+/* ===== POSTER ===== */
 .poster {
   position: relative;
   width: 90%;
@@ -66,7 +58,6 @@ body {
   margin: 40px auto;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   aspect-ratio: 16 / 9;
 }
 
@@ -77,43 +68,26 @@ body {
   filter: brightness(65%);
 }
 
+.poster-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
 
+/* ===== CONTACT ===== */
 .contact-section {
   text-align: center;
   padding: 50px 20px;
   background: #fff;
 }
 
-.contact-section h3 {
-  color: #000;
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-}
-
-.contact-section .intro {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.highlight {
-  color: #00b4d8;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  font-size: 1.1rem;
-}
-
-.order-text {
-  font-weight: 600;
-  margin-bottom: 30px;
-}
-
 .contact-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
   gap: 40px;
   margin-top: 30px;
 }
@@ -122,21 +96,13 @@ body {
   width: 600px;
   height: 450px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.contact-form {
-  background: #f8fcff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 25px;
-  width: 350px;
-  text-align: left;
 }
 
-.contact-form h4 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #0077b6;
+.contact-form {
+  background: #f8fcff;
+  padding: 25px;
+  width: 350px;
+  border-radius: 12px;
 }
 
 .contact-form input,
@@ -144,72 +110,51 @@ body {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  font-size: 0.95rem;
 }
 
-.contact-form textarea {
-  height: 90px;
-  resize: none;
-}
-
-.contact-form button {
-  width: 100%;
-  background: linear-gradient(to right, #0077b6, #00b4d8);
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact-form button:hover {
-  opacity: 0.9;
-}
-
+/* ===== FOOTER ===== */
 footer {
   background: #222;
   color: white;
   text-align: center;
   padding: 25px;
-  font-size: 0.9rem;
   margin-top: 60px;
 }
 
+/* ===== MOBILE ===== */
 @media (max-width: 600px) {
 
   .header-container {
     flex-direction: column;
-    text-align: center;
-    padding: 15px;
+    align-items: center;
   }
 
-  .header-container h1 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+  /* SHOW HAMBURGER */
+  .hamburger {
+    display: block;
+    margin-top: 10px;
   }
 
+  /* MENU HIDE */
   .menu {
+    width: 100%;
+    flex-direction: column;
+    display: none;
+    margin-top: 10px;
+  }
+
+  .menu.active {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
   }
 
   .menu a {
-    margin: 0;
-    font-size: 0.9rem;
-    padding: 5px 8px;
+    margin: 10px 0;
   }
 
+  /* POSTER */
   .poster {
     width: 95%;
     margin: 20px auto;
-    border-radius: 15px;
   }
 
   .poster-text h2 {
@@ -220,63 +165,20 @@ footer {
     font-size: 0.9rem;
   }
 
-  .contact-section {
-    padding: 30px 15px;
-  }
-
-  .contact-section h3 {
-    font-size: 1.2rem;
-  }
-
-  .contact-section .intro {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .highlight {
-    font-size: 1rem;
-    margin: 15px 0;
-  }
-
-  .order-text {
-    font-size: 0.95rem;
-  }
-
+  /* CONTACT */
   .contact-container {
     flex-direction: column;
     align-items: center;
-    gap: 25px;
   }
 
   .contact-image img {
     width: 100%;
-    max-width: 360px;
+    max-width: 350px;
     height: auto;
-    border-radius: 10px;
   }
 
   .contact-form {
     width: 90%;
-    max-width: 340px;
-    padding: 20px;
   }
 
-  .contact-form h4 {
-    font-size: 1.1rem;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.9rem;
-  }
-
-  .contact-form button {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-
-  footer {
-    font-size: 0.8rem;
-    padding: 15px;
-  }
 }

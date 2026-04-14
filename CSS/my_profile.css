@@ -127,3 +127,61 @@ body {
   box-shadow: 0 8px 18px rgba(0,114,255,0.35);
 }
 
+@media (max-width: 600px) {
+
+  /* HEADER */
+  .header {
+    padding: 20px 15px 50px;
+  }
+
+  .header h2 {
+    font-size: 1.3rem;
+  }
+
+  /* DASHBOARD */
+  .dashboard {
+    padding: 15px;
+    margin-top: -30px;
+  }
+
+  /* PROFILE CARD */
+  .profile-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  /* Avatar */
+  .profile-card::before {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    top: -28px;
+  }
+
+  /* TEXT */
+  .profile-card p {
+    font-size: 14px;
+    flex-direction: column; /* 🔥 label & value stack */
+    gap: 4px;
+  }
+
+  .profile-card strong {
+    font-size: 13px;
+  }
+
+  /* BUTTON */
+  .card-btn {
+    padding: 11px 0;
+    font-size: 14px;
+  }
+
+  .home-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

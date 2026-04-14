@@ -40,3 +40,32 @@ th {
   background: linear-gradient(to right, #0077b6, #00b4d8);
   color: white;
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    padding: 15px;
+  }
+
+  .header h2 {
+    font-size: 1.3rem;
+  }
+
+  .table-container {
+    margin: 20px auto;
+    border-radius: 10px;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 10px 8px;
+  }
+
+}

@@ -39,4 +39,8 @@ async function loadAdminData() {
   }
 }
 
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+
 loadAdminData();

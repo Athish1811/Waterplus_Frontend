@@ -5,50 +5,62 @@
   <meta charset="UTF-8" />
   <title>User Dashboard | Water Plus</title>
   <link rel="stylesheet" href="../CSS/user_dashboard.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+
+  <!-- HEADER -->
   <header class="header">
     <h2 class="logo">Water Plus</h2>
 
-    <nav class="menu">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <nav class="menu" id="menu">
       <a href="../pages/user_dashboard.html">Dashboard</a>
-      <a href="../pages/orders.html">Orders</a>
+      <a href="../pages/orders.html">Make an Order</a>
       <a href="../pages/contact.html">Contact</a>
       <a href="../pages/product.html">Products</a>
-      <a href="../pages/my_profile.html" title="My Profile" style="display: inline-flex; align-items: center; gap: 5px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </a>
       <a href="../index.html" class="logout">Logout</a>
+
+      <a href="../pages/my_profile.html" class="profile-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
     </nav>
   </header>
 
+  <!-- DASHBOARD -->
   <section class="dashboard">
     <h3>Welcome, Customer 👋</h3>
 
-    <div class="stats" style="display: flex; gap: 20px; margin-bottom: 30px;">
-      <div class="box" style="padding: 20px; border: 1px solid #ccc; border-radius: 8px; flex: 1; text-align: center;">
-        Total Orders
-        <br>
-        <span id="orderCount" style="font-size: 24px; font-weight: bold;">0</span>
+    <!-- ✅ FIXED STATS -->
+    <div class="stats">
+      <div class="box">
+        Total Orders <br>
+        <span id="orderCount">0</span>
       </div>
-      <div class="box" style="padding: 20px; border: 1px solid #ccc; border-radius: 8px; flex: 1; text-align: center;">
-        Pending Orders
-        <br>
-        <span id="pendingCount" style="font-size: 24px; font-weight: bold;">0</span>
+
+      <div class="box">
+        Pending Orders <br>
+        <span id="pendingCount">0</span>
       </div>
-      <div class="box" style="padding: 20px; border: 1px solid #ccc; border-radius: 8px; flex: 1; text-align: center;">
-        Delivered Orders
-        <br>
-        <span id="deliveredCount" style="font-size: 24px; font-weight: bold;">0</span>
+
+      <div class="box">
+        Delivered Orders <br>
+        <span id="deliveredCount">0</span>
       </div>
-      <div class="box" style="padding: 20px; border: 1px solid #ccc; border-radius: 8px; flex: 1; text-align: center;">
-        Total Spent
-        <br>
-        <span id="totalSpent" style="font-size: 24px; font-weight: bold;">0</span>
+
+      <div class="box">
+        Total Spent <br>
+        <span id="totalSpent">0</span>
       </div>
     </div>
 
+    <!-- CARDS -->
     <div class="cards">
       <div class="card">
         <h4><a href="my_orders.html">Orders</a></h4>
@@ -61,15 +73,21 @@
       </div>
     </div>
   </section>
-</body>
-<script src="../JavaScript/config.js"></script>
-<script src="../JavaScript/user_dashboard.js"></script>
-<script>
-  document.querySelector('.logout')?.addEventListener('click', function (e) {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.href = '../index.html';
-  });
-</script>
 
+  <script src="../JavaScript/config.js"></script>
+  <script src="../JavaScript/user_dashboard.js"></script>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+
+    document.querySelector('.logout')?.addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.clear();
+      window.location.href = '../index.html';
+    });
+  </script>
+
+</body>
 </html>

@@ -82,3 +82,37 @@ button {
 button:hover {
   opacity: 0.9;
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 20px;
+    /* avoid full height issue */
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 20px;
+    border-radius: 12px;
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .input-group input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

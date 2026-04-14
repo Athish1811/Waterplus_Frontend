@@ -72,3 +72,16 @@ ${product.description || 'High-quality drinking water'}`
 
 // Load products when page loads
 document.addEventListener('DOMContentLoaded', loadProducts);
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+
+/* dropdown click for mobile */
+document.querySelectorAll(".dropdown").forEach(item => {
+  item.addEventListener("click", function () {
+    if (window.innerWidth <= 768) {
+      this.classList.toggle("active");
+    }
+  });
+});

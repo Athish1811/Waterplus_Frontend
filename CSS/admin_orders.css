@@ -74,3 +74,34 @@ button:hover {
 button:active {
     transform: translateY(0);
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 10px 8px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+}

@@ -124,3 +124,61 @@ body {
   background: rgba(9, 132, 227, 0.05);
   transform: translateY(-2px);
 }
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .header h2 {
+    font-size: 1.3rem;
+  }
+
+  /* CONTAINER */
+  .container {
+    padding: 20px 10px;
+  }
+
+  /* GRID → 1 column */
+  .orders-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* CARD */
+  .order-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .order-card h3 {
+    font-size: 1rem;
+  }
+
+  .order-card p {
+    font-size: 0.85rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+  }
+
+  /* BUTTON */
+  .home-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

@@ -6,6 +6,7 @@ body {
   background: #f8fbff;
 }
 
+/* ================= HEADER ================= */
 .header {
   background: linear-gradient(135deg, #0984e3, #00d2ff);
   color: #fff;
@@ -14,13 +15,19 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .header h2 {
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
-  letter-spacing: -0.5px;
+}
+
+/* ================= MENU ================= */
+.menu {
+  display: flex;
+  align-items: center;
 }
 
 .menu a {
@@ -40,9 +47,16 @@ body {
   background: rgba(255,255,255,0.2);
   padding: 8px 18px;
   border-radius: 12px;
-  backdrop-filter: blur(5px);
 }
 
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* ================= ADMIN ================= */
 .admin {
   padding: 50px 20px;
   max-width: 1200px;
@@ -57,6 +71,7 @@ body {
   text-align: center;
 }
 
+/* ================= STATS ================= */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -68,14 +83,12 @@ body {
   padding: 30px 20px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid rgba(0,0,0,0.03);
+  transition: all 0.4s ease;
   text-align: center;
 }
 
 .box:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(9, 132, 227, 0.15);
 }
 
 .box span {
@@ -90,6 +103,51 @@ body {
   color: #636e72;
   font-size: 0.9rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+}
+
+/* ================= RESPONSIVE (600px) ================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hide menu */
+  
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    
+    position: relative; /* 🔥 change from absolute → relative */
+  }
+  
+
+  .menu a {
+    margin: 12px 0;
+    font-size: 1rem;
+  }
+
+  /* Active menu */
+  .menu.active {
+    display: flex;
+  }
+
+  .admin {
+    padding: 30px 15px;
+  }
+
+  .admin h3 {
+    font-size: 1.4rem;
+  }
 }
